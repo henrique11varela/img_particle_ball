@@ -9,18 +9,19 @@ window.addEventListener('load', () => {
     function createImage(imgSrc) {
         document.getElementById("canvasContainer").innerHTML = "<canvas id=\"canvas\"></canvas>";
         document.getElementById("imgContainer").innerHTML = "<img id=\"img\" src='" + imgSrc + "' alt=\"\">";
-        setTimeout(() => {
-            canvas = document.getElementById("canvas");
-            ctx = canvas.getContext("2d");
-            img = document.getElementById("img");
+        canvas = document.getElementById("canvas");
+        ctx = canvas.getContext("2d");
+        img = document.getElementById("img");
+        img.addEventListener("load", () => {
             canvas.width = img.width;
             canvas.height = img.height;
             effect = new Effect(canvas.width, canvas.height, img, 5);
             effect.init(ctx);
-        }, 1000);
+            animate();
+        });
     }
 
-    createImage("test.png");
+    createImage("https://static.wixstatic.com/media/523133_0331e5b13e3547b9bb9d82d44aa55301~mv2.jpg/v1/fill/w_490,h_653,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/315519401_680559163434861_6301409944220844147_n_edited.jpg");
 
 
     document.getElementById("createImageButton").addEventListener("click", () => { createImage(document.getElementById("createImageInput").value) });
@@ -32,7 +33,6 @@ window.addEventListener('load', () => {
         effect.draw(ctx);
         window.requestAnimationFrame(animate);
     }
-    animate();
 });
 
 
