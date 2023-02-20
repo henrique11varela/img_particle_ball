@@ -9,19 +9,21 @@ window.addEventListener('load', () => {
     function createImage(imgSrc) {
         document.getElementById("canvasContainer").innerHTML = "<canvas id=\"canvas\"></canvas>";
         document.getElementById("imgContainer").innerHTML = "<img id=\"img\" src='" + imgSrc + "' alt=\"\">";
-        canvas = document.getElementById("canvas");
-        ctx = canvas.getContext("2d");
-        img = document.getElementById("img");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        effect = new Effect(canvas.width, canvas.height, img, 5);
-        effect.init(ctx);
+        setTimeout(() => {
+            canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            img = document.getElementById("img");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            effect = new Effect(canvas.width, canvas.height, img, 5);
+            effect.init(ctx);
+        }, 1000);
     }
 
     createImage("test.png");
 
 
-    document.getElementById("createImageButton").addEventListener("click", () => { createImage(document.getElementById("createImageInput").value)});
+    document.getElementById("createImageButton").addEventListener("click", () => { createImage(document.getElementById("createImageInput").value) });
 
     function animate() {
         debugger;
