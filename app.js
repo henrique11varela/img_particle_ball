@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
             img = document.getElementById("img");
             canvas.width = img.width;
             canvas.height = img.height;
-            effect = new Effect(canvas.width, canvas.height, img, 1);
+            effect = new Effect(canvas.width, canvas.height, img, 5);
             effect.init(ctx);
         }, 1000);
     }
