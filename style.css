@@ -3,17 +3,23 @@
     padding: 0;
 }
 
-#canvasContainer, 
-#createImage {
+#canvasContainer,
+#createImage,
+#list {
     display: flex;
     justify-content: center;
-    padding: 3rem;
+    margin-top: 3rem;
 }
 
-#canvasContainer>canvas {
+#canvasContainer,
+#list {
+    flex-direction: column;
+    align-items: center;
+}
 
+/* #canvasContainer>canvas {
     background-color: blue;
-}
+} */
 
 #imgContainer {
     display: none;

@@ -1,19 +1,21 @@
 class Effect {
-    constructor(width, height, image, resolution) {
+    constructor(width, height, canvas, image, resolution) {
         this.width = width;
         this.height = height;
         this.particlesArray = [];
         this.image = image;
+        this.canvas = canvas;
         this.resolution = resolution;
         this.speed = 0.05;
         this.mouse = {
-            radius: 3000,
+            radius: Math.pow(54, 2),
             x: undefined,
             y: undefined
         };
         window.addEventListener('mousemove', (event) => {
-            this.mouse.x = event.x;
-            this.mouse.y = event.y;
+            var rect = this.canvas.getBoundingClientRect();
+            this.mouse.x = event.x - rect.left;
+            this.mouse.y = event.y - rect.top;
         });
     }
     init(context) {
@@ -37,6 +39,15 @@ class Effect {
     }
     update() {
         this.particlesArray.forEach(element => {
+            //todo: calculate vX and vY
+            let distX = element.x - this.mouse.x;
+            let distY = element.y - this.mouse.y;
+            let distance = distX * distX + distY * distY;
+            let angle = Math.atan2(distY, distX);
+            if (distance < this.mouse.radius) {
+                element.forceX += this.mouse.radius / distance * Math.cos(angle);
+                element.forceY += this.mouse.radius / distance * Math.sin(angle);
+            }
             element.update();
         });
     }
