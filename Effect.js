@@ -1,5 +1,5 @@
 class Effect {
-    constructor(width, height, canvas, image, resolution) {
+    constructor(width, height, canvas, image, resolution, mouse) {
         this.width = width;
         this.height = height;
         this.particlesArray = [];
@@ -7,16 +7,7 @@ class Effect {
         this.canvas = canvas;
         this.resolution = resolution;
         this.speed = 0.05;
-        this.mouse = {
-            radius: Math.pow(54, 2),
-            x: undefined,
-            y: undefined
-        };
-        window.addEventListener('mousemove', (event) => {
-            var rect = this.canvas.getBoundingClientRect();
-            this.mouse.x = event.x - rect.left;
-            this.mouse.y = event.y - rect.top;
-        });
+        this.mouse = mouse;
     }
     init(context) {
         context.drawImage(img, 0, 0);
@@ -44,9 +35,10 @@ class Effect {
             let distY = element.y - this.mouse.y;
             let distance = distX * distX + distY * distY;
             let angle = Math.atan2(distY, distX);
-            if (distance < this.mouse.radius) {
-                element.forceX += this.mouse.radius / distance * Math.cos(angle);
-                element.forceY += this.mouse.radius / distance * Math.sin(angle);
+            let trueRadius = Math.pow(this.mouse.radius, 3);
+            if (distance < trueRadius) {
+                element.forceX += trueRadius / distance * Math.cos(angle);
+                element.forceY += trueRadius / distance * Math.sin(angle);
             }
             element.update();
         });
