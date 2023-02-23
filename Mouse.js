@@ -10,11 +10,13 @@ class Mouse {
         this.endY = 0;
         this.forceX = 0;
         this.forceY = 0;
+        //move
         window.addEventListener('mousemove', (event) => {
             var rect = this.canvas.getBoundingClientRect();
             this.x = event.x - rect.left;
             this.y = event.y - rect.top;
         });
+        //click
         window.addEventListener('mousedown', (event) => {
             var rect = this.canvas.getBoundingClientRect();
             this.startX = event.x - rect.left;;
@@ -26,8 +28,20 @@ class Mouse {
             this.endY = event.y - rect.top;
             this.forceX = this.endX - this.startX;
             this.forceY = this.endY - this.startY;
-
-            console.log(this.forceX, this.forceY);
+        });
+        //touch
+        window.addEventListener('touchstart', (event) => {
+            var rect = this.canvas.getBoundingClientRect();
+            this.startX = event.changedTouches[0].clientX - rect.left;;
+            this.startY = event.changedTouches[0].clientY - rect.top;;
+            console.log(event);
+        });
+        window.addEventListener('touchend', (event) => {
+            var rect = this.canvas.getBoundingClientRect();
+            this.endX = event.changedTouches[0].clientX - rect.left;
+            this.endY = event.changedTouches[0].clientY - rect.top;
+            this.forceX = this.endX - this.startX;
+            this.forceY = this.endY - this.startY;
         });
     }
 }
