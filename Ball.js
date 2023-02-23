@@ -6,12 +6,12 @@ class Ball {
         this.y = Math.floor(canvas.height / 2);
         this.vX = 0;
         this.vY = 0;
-        this.radius = (canvas.width > canvas.height ? canvas.height : canvas.width) / 10;
+        this.radius = document.getElementById("radius").value;
         this.bounce = 0.9;
         this.gravity = 10 / 40;
     }
     draw(context) { //draw in canvas
-        context.fillStyle = "rgba(255,0,0,255)";
+        context.fillStyle = "rgba(255,0,0,0.5)";
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fill()
@@ -24,7 +24,7 @@ class Ball {
         this.mouse.forceY = 0;
 
         //if its on the ground and has speed
-        if (this.y >= canvas.height - this.radius && this.vY > 0) {
+        if ((this.y >= canvas.height - this.radius && this.vY > 0) || (this.y <= this.radius && this.vY < 0)) {
             this.vY *= -this.bounce;
         }
 
@@ -39,7 +39,7 @@ class Ball {
             this.vX *= -this.bounce;
         }
         
-        this.x += this.vX;
-        this.y += this.vY;
+        this.x += (this.vX *= 0.995);
+        this.y += this.vY
     }
 }

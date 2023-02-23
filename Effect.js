@@ -1,5 +1,5 @@
 class Effect {
-    constructor(width, height, canvas, image, resolution, mouse) {
+    constructor(width, height, canvas, image, resolution, ball) {
         this.width = width;
         this.height = height;
         this.particlesArray = [];
@@ -7,7 +7,7 @@ class Effect {
         this.canvas = canvas;
         this.resolution = resolution;
         this.speed = 0.05;
-        this.mouse = mouse;
+        this.ball = ball;
     }
     init(context) {
         context.drawImage(img, 0, 0);
@@ -30,12 +30,11 @@ class Effect {
     }
     update() {
         this.particlesArray.forEach(element => {
-            //todo: calculate vX and vY
-            let distX = element.x - this.mouse.x;
-            let distY = element.y - this.mouse.y;
+            let distX = element.x - this.ball.x;
+            let distY = element.y - this.ball.y;
             let distance = distX * distX + distY * distY;
             let angle = Math.atan2(distY, distX);
-            let trueRadius = Math.pow(this.mouse.radius, 3);
+            let trueRadius = this.ball.radius * this.ball.radius * 7;
             if (distance < trueRadius) {
                 element.forceX += trueRadius / distance * Math.cos(angle);
                 element.forceY += trueRadius / distance * Math.sin(angle);

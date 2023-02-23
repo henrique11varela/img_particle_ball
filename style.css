@@ -4,8 +4,8 @@
 }
 
 #canvasContainer,
-#createImage,
-#list {
+#createImage, 
+#settings{
     display: flex;
     justify-content: center;
     margin-top: 3rem;
@@ -17,9 +17,10 @@
     align-items: center;
 }
 
-/* #canvasContainer>canvas {
-    background-color: blue;
-} */
+body,
+#canvasContainer>canvas {
+    background-color: whitesmoke;
+}
 
 #imgContainer {
     display: none;

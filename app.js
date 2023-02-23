@@ -33,12 +33,9 @@ window.addEventListener('load', () => {
         window.requestAnimationFrame(animate);
     }
 
-    document.getElementById("createImageButton").addEventListener("click", () => { createImage(document.getElementById("createImageInput").value) });
-    document.getElementById("createImageInput").addEventListener("keypress", (event) => {
-        if (event.key === "Enter") {
-            createImage(document.getElementById("createImageInput").value);
-        }
-    });
+    document.getElementById("Penguin").addEventListener("click", () => { createImage("test.png") });
+    document.getElementById("Henrique").addEventListener("click", () => { createImage("test2.png") });
+
 
     createImage("test.png");
 
