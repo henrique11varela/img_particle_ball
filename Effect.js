@@ -10,7 +10,7 @@ class Effect {
         this.ball = ball;
     }
     init(context) {
-        context.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
+        context.drawImage(img, (canvas.width - img.width) / 2, (canvas.height - img.height) / 2);
         const pixels = context.getImageData(0, 0, this.width, this.height).data;
         for (let y = 0; y < this.height; y += this.resolution) {
             for (let x = 0; x < this.width; x += this.resolution) {

@@ -1,17 +1,18 @@
 class Ball {
-    constructor(canvas, mouse) {
+    constructor(canvas, mouse, ballRadius) {
         this.mouse = mouse;
         this.canvas = canvas;
         this.x = Math.floor(canvas.width / 2);
         this.y = Math.floor(canvas.height / 2);
         this.vX = 0;
         this.vY = 0;
-        this.radius = document.getElementById("radius").value;
+        this.radius = ballRadius;
         this.bounce = 0.9;
         this.gravity = 10 / 40;
     }
     draw(context) { //draw in canvas
         context.fillStyle = "rgba(255,0,0,0.5)";
+        context.strokeStyle = "rgba(255,255,255,1)";
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fill()
@@ -35,7 +36,7 @@ class Ball {
         }
         
         //X movement
-        if ((this.x <= 0 && this.vX < 0) || (this.x >= canvas.width && this.vX > 0)) {
+        if ((this.x <= this.radius && this.vX < 0) || (this.x >= canvas.width - this.radius && this.vX > 0)) {
             this.vX *= -this.bounce;
         }
         

@@ -4,69 +4,41 @@
 }
 
 body {
+    background-color: #333333;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #c0c0d0;
 }
 
-h1,
-#createImage,
-#settings,
-#tutorial {
-    margin-top: 1rem;
-}
-
-#createImage>button {
+button {
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
 
 #canvas {
-    border-radius: 1rem;
-    margin-top: 1rem;
-    width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+
+#settings {
+    margin-top: 3rem;
+}
+
+#title {
+    margin-top: 3rem;
+    color: white;
+}
+
+#footer {
+    margin-top: calc(70vh);
+}
+
+svg {
+    height: 3rem;
 }
 
 #imgContainer {
     display: none;
-}
-
-@media (min-width: 992px) {
-
-    body {
-        display: grid;
-        grid-template-columns: 16px 1fr 2fr 1fr 16px;
-        grid-template-areas: 
-        ". . title . ."
-        ". create canvas tutorial ."
-        ". settings canvas tutorial .";
-    }
-
-    #title {
-        text-align: center;
-        grid-area: title;
-    }
-
-    #canvasContainer {
-        grid-area: canvas;
-    }
-
-    #createImage {
-        display: flex;
-        justify-content: space-evenly;
-        grid-area: create;
-    }
-
-    #settings {
-        display: flex;
-        justify-content: center;
-        grid-area: settings;
-    }
-
-    #tutorial {
-        display: flex;
-        justify-content: center;
-        grid-area: tutorial;
-    }
 }
